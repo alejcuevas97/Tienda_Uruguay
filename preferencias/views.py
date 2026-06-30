@@ -2,8 +2,15 @@ from django.shortcuts import render
 from .forms import PreferenciaForm
 from .models import Preferencia
 from .services import sugerir_regalos
+from rest_framework import viewsets
+from .serializers import PreferenciaSerializers
 
-
+# Create your views here.
+class PreferenciaViewSet(viewsets.ModelViewSet):
+    queryset = Preferencia.objects.all()
+    serializer_class = PreferenciaSerializers
+    
+    
 # Create your views here.
 def configurar_regalos(request):
     if request.method == "POST":
